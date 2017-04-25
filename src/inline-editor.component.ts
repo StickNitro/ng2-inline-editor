@@ -198,6 +198,12 @@ export class InlineEditorComponent implements OnInit, ControlValueAccessor {
 
     // Method to display the inline edit form and hide the <a> element
     edit(value): void {
+        if (this.disabled) {
+            // if control is disabled dont switch to edit mode, otherwise when
+            // the control is enabled it will switch to edit mode
+            return;
+        }
+
         this.preValue = value;  // Store original value in case the form is cancelled
         this.editing = true;
         this.inputInstance.focus();
